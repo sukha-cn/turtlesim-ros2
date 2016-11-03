@@ -46,15 +46,13 @@ add_executable(turtlesim_node
   ${turtlesim_node_MOCS}
 )
 
-get_available_rmw_implementations(rmw_implementations2)
-foreach(rmw_implementation ${rmw_implementations2})
-  find_package("${rmw_implementation}" REQUIRED)
-  get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
-  foreach(typesupport_impl ${typesupport_impls})
-    rosidl_target_interfaces(turtlesim_node
-      ${PROJECT_NAME} ${typesupport_impl}
-    )
-  endforeach()
+get_default_rmw_implementation(rmw_implementation)
+find_package("${rmw_implementation}" REQUIRED)
+get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
+foreach(typesupport_impl ${typesupport_impls})
+  rosidl_target_interfaces(turtlesim_node
+    ${PROJECT_NAME} ${typesupport_impl}
+  )
 endforeach()
 
 target_link_libraries(turtlesim_node 
