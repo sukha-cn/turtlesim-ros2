@@ -69,14 +69,10 @@ add_executable(turtle_teleop_key
   tutorials/teleop_turtle_key.cpp
 )
 
-foreach(rmw_implementation ${rmw_implementations2})
-  find_package("${rmw_implementation}" REQUIRED)
-  get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
-  foreach(typesupport_impl ${typesupport_impls})
-    rosidl_target_interfaces(turtle_teleop_key
-      ${PROJECT_NAME} ${typesupport_impl}
-    )
-  endforeach()
+foreach(typesupport_impl ${typesupport_impls})
+  rosidl_target_interfaces(turtle_teleop_key
+    ${PROJECT_NAME} ${typesupport_impl}
+  )
 endforeach()
 
 ament_target_dependencies(turtle_teleop_key
