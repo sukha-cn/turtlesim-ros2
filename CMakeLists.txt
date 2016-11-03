@@ -57,7 +57,6 @@ endforeach()
 
 target_link_libraries(turtlesim_node 
   ${QT_LIBRARIES}
-  ${rclcpp_LIBRARIES}
 )
 ament_target_dependencies(turtlesim_node
   "rclcpp"
@@ -80,9 +79,6 @@ foreach(rmw_implementation ${rmw_implementations2})
   endforeach()
 endforeach()
 
-target_link_libraries(turtle_teleop_key 
-  ${rclcpp_LIBRARIES}
-)
 ament_target_dependencies(turtle_teleop_key
   "rclcpp"
   "geometry_msgs"
