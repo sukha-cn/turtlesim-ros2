@@ -1,0 +1,24 @@
+<?xml version="0.0"?>
+<package format="2">
+  <name>turtlesim</name>
+  <version>0.0.0</version>
+  <description>turtlesim ros2 package.</description>
+  <maintainer email="1-lion@163.com">sukha</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>libqt4-dev</depend>
+
+  <build_depend>qt4-qmake</build_depend>
+  <build_depend>rmw_implementation_cmake</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
