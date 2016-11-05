@@ -46,20 +46,17 @@ add_executable(turtlesim_node
   ${turtlesim_node_MOCS}
 )
 
-get_available_rmw_implementations(rmw_implementations2)
-foreach(rmw_implementation ${rmw_implementations2})
-  find_package("${rmw_implementation}" REQUIRED)
-  get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
-  foreach(typesupport_impl ${typesupport_impls})
-    rosidl_target_interfaces(turtlesim_node
-      ${PROJECT_NAME} ${typesupport_impl}
-    )
-  endforeach()
+get_default_rmw_implementation(rmw_implementation)
+find_package("${rmw_implementation}" REQUIRED)
+get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
+foreach(typesupport_impl ${typesupport_impls})
+  rosidl_target_interfaces(turtlesim_node
+    ${PROJECT_NAME} ${typesupport_impl}
+  )
 endforeach()
 
 target_link_libraries(turtlesim_node 
   ${QT_LIBRARIES}
-  ${rclcpp_LIBRARIES}
 )
 ament_target_dependencies(turtlesim_node
   "rclcpp"
@@ -72,19 +69,12 @@ add_executable(turtle_teleop_key
   tutorials/teleop_turtle_key.cpp
 )
 
-foreach(rmw_implementation ${rmw_implementations2})
-  find_package("${rmw_implementation}" REQUIRED)
-  get_rmw_typesupport(typesupport_impls "${rmw_implementation}" LANGUAGE "cpp")
-  foreach(typesupport_impl ${typesupport_impls})
-    rosidl_target_interfaces(turtle_teleop_key
-      ${PROJECT_NAME} ${typesupport_impl}
-    )
-  endforeach()
+foreach(typesupport_impl ${typesupport_impls})
+  rosidl_target_interfaces(turtle_teleop_key
+    ${PROJECT_NAME} ${typesupport_impl}
+  )
 endforeach()
 
-target_link_libraries(turtle_teleop_key 
-  ${rclcpp_LIBRARIES}
-)
 ament_target_dependencies(turtle_teleop_key
   "rclcpp"
   "geometry_msgs"
